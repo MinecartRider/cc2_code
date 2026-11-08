@@ -37,8 +37,20 @@ def feedback_delay(N, alpha=ALPHA, H=8, threshold=0.1, end=300):
     Use an event's ``direction`` and ``terminal`` attributes to select the crossing
     and stop there; event times are returned in ``sol.t_events``.
     """
-    # YOUR CODE HERE
-    raise NotImplementedError()
+    hit_thresh=lambda t, x:x[N-1]-threshold
+    hit_thresh.terminal = True
+
+
+    x0=[]
+    x0.append(1)
+    for i in range(1,N):
+        x0.append(0)
+    sol = solve_ivp(
+    lambda t, x: goodwin_rhs(t,x,alpha,H),
+    [0, end], x0, events=hit_thresh)
+
+    return sol.t_events[0]
+
 
 
 # Question 1(c): estimate the period and variability of late peak intervals.
