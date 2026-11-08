@@ -50,7 +50,7 @@ def goldbeter_rhs_epsilon(t, x, p=PARAMS, epsilon=1.0):
     scaled_p['v2'] = p['v2'] / epsilon
     scaled_p['v3'] = p['v3'] / epsilon
     scaled_p['v4'] = p['v4'] / epsilon
-    goldbeter_rhs(t, x, scaled_p)
+    return goldbeter_rhs(t, x, scaled_p)
     
     # YOUR CODE HERE
     raise NotImplementedError()
@@ -79,6 +79,7 @@ def estimate_period(solution):
 def rk45_step_count(epsilon):
     """Run RK45 and return its number of time steps."""
     # YOUR CODE HERE
+    return len(simulate(epsilon, "RK45").t)-1
     raise NotImplementedError()
 
 
@@ -86,6 +87,7 @@ def rk45_step_count(epsilon):
 def radau_step_count(epsilon):
     """Run Radau and return its number of time steps."""
     # YOUR CODE HERE
+    return len(simulate(epsilon, "Radau").t)-1
     raise NotImplementedError()
 
 
