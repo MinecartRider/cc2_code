@@ -43,6 +43,7 @@ def _period_from_solution(sol):
 def estimate_period(vd):
     """Estimate the stable late-cycle period of nuclear PER."""
     # YOUR CODE HERE
+    return _period_from_solution(simulate(vd))
     raise NotImplementedError()
 
 

@@ -45,6 +45,8 @@ def goldbeter_rhs(t, x, p=PARAMS):
 # Question 2(a): add timescale separation around the supplied model.
 def goldbeter_rhs_epsilon(t, x, p=PARAMS, epsilon=1.0):
     """Scale ``v1``--``v4`` by ``1/epsilon`` and call ``goldbeter_rhs``."""
+    # YOUR CODE HERE
+
     scaled_p = p.copy()
     scaled_p['v1'] = p['v1'] / epsilon
     scaled_p['v2'] = p['v2'] / epsilon
@@ -52,7 +54,6 @@ def goldbeter_rhs_epsilon(t, x, p=PARAMS, epsilon=1.0):
     scaled_p['v4'] = p['v4'] / epsilon
     return goldbeter_rhs(t, x, scaled_p)
     
-    # YOUR CODE HERE
     raise NotImplementedError()
 
 
