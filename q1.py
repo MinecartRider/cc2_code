@@ -67,8 +67,27 @@ def oscillation_stats(N, H, alpha=ALPHA, discard=3, end=300, samples=12001):
     You might want to use these functions (given in no particular order):
     np.std, np.ptp, find_peaks, np.mean
     """
-    # YOUR CODE HERE
-    raise NotImplementedError()
+    x0=np.ones(N)
+    sol = solve_ivp(
+        lambda t, x: goodwin_rhs(t, x, alpha, H),
+        [0, end], x0, rtol=1e-8, atol=1e-10
+    )
+    data=sol.x[0]
+    peaks, properties = find_peaks(data)
+    peaks2=peaks[discard:]
+    mean=np.mean(peaks2)
+    std=np.std(peaks2)
+    amp_n=np.ptp(data[peaks2[-2]:peaks2[-1]])
+    amp_n_1=np.ptp(data[peaks2[-3]:peaks2[-2]])
+    delta_amp=abs(amp_n-amp_n_1)/max(amp_n,amp_n_1)
+    var=std/mean
+
+    if(len(peaks2)>4 and var<=0.01 and amp_n>=0.01 and delta_amp<=0.001):
+        return (mean, std)
+
+    else:
+        return(np.nan,np.nan)
+
 
 
 def plot_exercises():
