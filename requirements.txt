@@ -1,0 +1,18 @@
+# MAT292 Assignment 2 student code requirements
+# Requires Python 3.10 or later.
+numpy >= 1.24
+scipy >= 1.10
+matplotlib >= 3.7
+
+# Install uv: https://docs.astral.sh/uv/getting-started/installation/
+# Run these commands from the directory containing this file.
+#
+# macOS / Linux (bash/zsh)
+#   uv venv
+#   source .venv/bin/activate
+#   uv pip install -r requirements.txt
+#
+# Windows PowerShell (powershell)
+#   uv venv
+#   .venv\Scripts\Activate.ps1
+#   uv pip install -r requirements.txt
