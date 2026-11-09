@@ -71,6 +71,7 @@ def oscillation_stats(N, H, alpha=ALPHA, discard=3, end=300, samples=12001):
     """
     x0=np.ones(N)
     times=np.linspace(0, end, samples)
+    t_int=(end-0)/samples
     sol = solve_ivp(
         lambda t, x: goodwin_rhs(t, x, alpha, H),
         [0, end], x0, rtol=1e-8, atol=1e-10, t_eval=times
@@ -80,12 +81,14 @@ def oscillation_stats(N, H, alpha=ALPHA, discard=3, end=300, samples=12001):
     peaks2=peaks[discard:]
     delta_t=[]
     for i in range(1,len(peaks2)):
-        delta_t.append(peaks2[i]-peaks2[i-1])
+        delta_t.append(t_int*(peaks2[i]-peaks2[i-1]))
 
     mean=np.mean(delta_t)
     std=np.std(delta_t, ddof=1)
-    amp_n=np.ptp(data[peaks2[-2]:peaks2[-1]])
-    amp_n_1=np.ptp(data[peaks2[-3]:peaks2[-2]])
+    if(len(peaks2)<4):
+        return (np.nan, np.nan)
+    amp_n=np.ptp(data[peaks2[-2]:peaks2[-1]+1])
+    amp_n_1=np.ptp(data[peaks2[-3]:peaks2[-2]+1])
     delta_amp=abs(amp_n-amp_n_1)/max(amp_n,amp_n_1)
     var=std/mean
     print(var)
