@@ -85,7 +85,7 @@ def oscillation_stats(N, H, alpha=ALPHA, discard=3, end=300, samples=12001):
 
     mean=np.mean(delta_t)
     std=np.std(delta_t, ddof=1)
-    if(len(peaks2<4):
+    if(len(peaks2)<4):
         return (np.nan, np.nan)
     amp_n=np.ptp(data[peaks2[-2]:peaks2[-1]+1])
     amp_n_1=np.ptp(data[peaks2[-3]:peaks2[-2]+1])
