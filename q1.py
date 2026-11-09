@@ -26,7 +26,7 @@ def goodwin_rhs(t, x, alpha, H):
     dx.append((alpha) / (1 + (x[-1] ** H)) - x[0])
     for i in range(1,len(x)):
         dx.append(x[i-1]-x[i])
-    return dx
+    return np.array(dx)
 
 # Question 1(b): investigate the effective time-delay
 def feedback_delay(N, alpha=ALPHA, H=8, threshold=0.1, end=300):
@@ -48,8 +48,8 @@ def feedback_delay(N, alpha=ALPHA, H=8, threshold=0.1, end=300):
     sol = solve_ivp(
     lambda t, x: goodwin_rhs(t,x,alpha,H),
     [0, end], x0, events=hit_thresh)
-
-    return sol.t_events[0]
+    print (sol.t_events[0][0])
+    return sol.t_events[0][0]
 
 
 

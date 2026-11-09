@@ -2,7 +2,10 @@ import unittest
 import numpy as np
 
 # Adjust this import to match the name of your main challenge script
-import challenge
+from challenge import (
+    REPORTER_PARAMETERS, validate_parameters, edit_summary, 
+    objective, EDITABLE_INDICES, FORBIDDEN_INDICES, PARAMETER_NAMES, GENE_COSTS
+)
 
 class TestClockChallenge(unittest.TestCase):
     

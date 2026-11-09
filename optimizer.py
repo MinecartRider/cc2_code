@@ -54,7 +54,7 @@ if __name__ == "__main__":
         return evaluate_parameters(p_trial)["objective"]
         
     steps = 11  # Run for another 50 steps
-    learning_rate = 0.000001 
+    learning_rate = 0.0001 
     
     print(f"Resuming from objective: {objective_for_q(q):.4f}")
     
