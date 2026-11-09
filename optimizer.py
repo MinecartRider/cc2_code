@@ -32,8 +32,8 @@ if __name__ == "__main__":
     # 1. Define your saved array from the 50th step
     saved_p = np.array([
     0.2428824295, 0.32515446780000001, 0.0012427507, 0.41151656096432876, 0.0014498909,
-    0.038688194936925754, 0.066247264400000005, 0.1344445590166259, 0.60923825460000003, 0.5490839153,
-    2.0944834430000001, 0.08238976375666361, 0.23592542276102763, 0.49029141079999999, 1.1094139264,
+    0.044065152108205205, 0.066247264400000005, 0.13119760718325493, 0.60923825460000003, 0.5490839153,
+    2.0944834430000001, 0.081444524599999998, 0.2357602144, 0.49029141079999999, 1.1094139264,
     1.0923791030000001, 0.0942352568, 26.974767933999999, 2.7313294030000002, 3.2836338450109746,
     4.5264633761999997, 0.00027825560000000003, 0.015193632021321924, 0.052771229056914802, 1.7016120651,
     2.1727019427999998, 1.3968953974, 0.3257597398609326, 1.3419368066999999, 1.9077837282000001,
@@ -43,7 +43,7 @@ if __name__ == "__main__":
 ])
     
     # Define the genes you were optimizing
-    GENES = ["CRY1", "ROR"] 
+    GENES = ["CRY1"] 
     
     # 2. Extract the starting 'q' values from your saved array, NOT the reporter
     q = saved_p[gene_indices(GENES)].copy()
@@ -53,8 +53,8 @@ if __name__ == "__main__":
         p_trial = update_pars(saved_p, q_trial, GENES)
         return evaluate_parameters(p_trial)["objective"]
         
-    steps = 25  # Run for another 50 steps
-    learning_rate = 0.001 
+    steps = 11  # Run for another 50 steps
+    learning_rate = 0.000001 
     
     print(f"Resuming from objective: {objective_for_q(q):.4f}")
     
@@ -77,7 +77,7 @@ if __name__ == "__main__":
             
         # If safe, accept the step
         q = q_next
-        print(f"Iteration {iteration+1:2} | Objective: {current_obj:.4f}")
+        print(f"Iteration {iteration+1:2} | Objective: {current_obj:.8f}")
         
    # --- Generate and print the final vector ---
     p_edit = update_pars(saved_p, q, GENES)
