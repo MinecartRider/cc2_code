@@ -48,7 +48,10 @@ def feedback_delay(N, alpha=ALPHA, H=8, threshold=0.1, end=300):
     sol = solve_ivp(
     lambda t, x: goodwin_rhs(t,x,alpha,H),
     [0, end], x0, events=hit_thresh)
-    return sol.t_events[0][0]
+    if len(sol.t_events[0])==0:
+        return np.nan
+    else:
+        return sol.t_events[0][0]
 
 
 
